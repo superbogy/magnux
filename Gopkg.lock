@@ -56,6 +56,12 @@
   version = "v1.1.1"
 
 [[projects]]
+  name = "github.com/upyun/go-sdk"
+  packages = ["upyun"]
+  revision = "a71208d1155d6de85b8e80b480634957695db963"
+  version = "v2.1.0"
+
+[[projects]]
   branch = "master"
   name = "golang.org/x/sys"
   packages = ["unix"]
@@ -76,6 +82,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "0ddc33a024cc45d59e3a389640b85f1152fcca4089d42e79873c17edab395253"
+  inputs-digest = "b46a72403fefd35cd2655b340bdc49d5e194e8e28dc0e74b8e88fb8aac5ffd3c"
   solver-name = "gps-cdcl"
   solver-version = 1

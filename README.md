@@ -1,2 +1,4 @@
 ### 安装依赖
-govendor sync
+dep ensure
+
+dep ensure github.com/superbogy/magnux
