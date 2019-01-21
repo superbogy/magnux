@@ -16,7 +16,7 @@ func Upload(ctx *gin.Context) {
 	}
 
     up := upyun.NewUpYun(&upyun.UpYunConfig{
-        Bucket:   "knight-test",
+        Bucket:   "knight-test",)
         Operator: "devil",
         Password: "knight123",
     })
