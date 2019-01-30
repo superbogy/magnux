@@ -16,7 +16,8 @@ func Upload(ctx *gin.Context) {
 	}
 
     up := upyun.NewUpYun(&upyun.UpYunConfig{
-        Bucket:   "knight-test",)
+        Bucket:   "knight-test",
+
         Operator: "devil",
         Password: "knight123",
     })
@@ -27,7 +28,7 @@ func Upload(ctx *gin.Context) {
         fmt.Println("type:", reflect.TypeOf(file))
         src, err := file.Open()
         if err != nil {
-            return;
+            return
         }
 
         fmt.Println("type:", reflect.TypeOf(src))

@@ -9,8 +9,8 @@ import (
 )
 
 type User struct {
-    Username string `json:"username"`
-    Password string `json:"password"`
+    Username string `json:"username" binding:"required"`
+    Password string `json:"password" binding:"required"`
 }
 
 // Login controller
@@ -21,7 +21,8 @@ func Login(ctx *gin.Context) {
             "code": 10401,
             "message": err.Error(),
         })
-        return;
+        ctx.Abort()
+        return
     }
 
     fmt.Println("%v+\n %v+\n", body.Username, body.Password)
@@ -40,11 +41,12 @@ func Login(ctx *gin.Context) {
     jot.SetAlgorithm(hs256)
     jot.SetKeyID("123123")
     payload, err := jwt.Marshal(jot)
-    if (err != nil) {
+    if err != nil {
         ctx.JSON(400, gin.H{
             "message": err.Error(),
             "code": "123123",
         })
+        ctx.Abort()
 
         return
     }
@@ -53,6 +55,12 @@ func Login(ctx *gin.Context) {
     token, err := hs256.Sign(payload)
     if err != nil {
         // handle error
+        ctx.JSON(401, gin.H{
+            "message": "invalid token",
+            "code": 10401,
+        })
+        ctx.Abort()
+        return
     }
     fmt.Printf("token = %s", token)
     ctx.JSON(200, gin.H{

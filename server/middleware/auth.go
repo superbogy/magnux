@@ -1,28 +1,28 @@
 package middleware
 
 import (
-    "strings"
-    "reflect"
     "bytes"
     "fmt"
+    "reflect"
+    "strings"
 
-    "github.com/gin-gonic/gin"
     "github.com/gbrlsnchs/jwt"
+    "github.com/gin-gonic/gin"
 )
 
 // Auth middleware
 func Auth(ctx *gin.Context) {
-    authization := ctx.GetHeader("Authorization")
-    if authization == "" {
+    authorization := ctx.GetHeader("Authorization")
+    if authorization == "" {
         ctx.JSON(401, gin.H{
             "message": "authorized required",
             "code": "1401",
         })
-
+        ctx.Abort()
         return
     }
 
-    bucket := strings.Split(authization, " ")
+    bucket := strings.Split(authorization, " ")
     if len(bucket) != 2 {
         ctx.JSON(401, gin.H{
             "message": "authorized required",
